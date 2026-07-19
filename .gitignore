@@ -1,0 +1,10 @@
+# Audit log HMAC key (secret) and local audit log
+louis-bunt-web/.audit-key
+louis-bunt-web/audit.jsonl
+
+# Separate git checkout of LouisBunt/designbybunt-web
+louis-bunt-web/louis-bunt-web-release-final/
+
+# Local editor / Claude Code state
+louis-bunt-web/.claude/
+louis-bunt-web/.vscode/

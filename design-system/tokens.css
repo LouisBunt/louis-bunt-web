@@ -1,0 +1,119 @@
+/* ============================================================================
+   BUNT — Design Tokens
+   Single source of truth for colour, type, space, radius, glow & motion.
+   Pure CSS custom properties. No build step, no JS. Tor-safe.
+   ----------------------------------------------------------------------------
+   Per-release theming: override --bunt-accent on any scope (see themes.css)
+   or inline:  <section style="--bunt-accent:#35e6d6">…</section>
+   ========================================================================== */
+
+:root {
+  /* ---- Base surfaces (near-black, cold desaturated purple) --------------- */
+  --bunt-bg:            #0b0910;  /* page background */
+  --bunt-bg-2:          #100d16;  /* deep panels / footer */
+  --bunt-surface:       #17131f;  /* cards */
+  --bunt-surface-2:     #1f1a29;  /* raised card / hover */
+  --bunt-surface-3:     #2a2336;  /* inputs, chips */
+
+  /* ---- Lines / borders -------------------------------------------------- */
+  --bunt-line:          #2a2434;
+  --bunt-line-strong:   #3b3350;
+
+  /* ---- Text ------------------------------------------------------------- */
+  --bunt-text:          #ece9f1;  /* primary */
+  --bunt-text-muted:    #a49cb5;  /* secondary / meta */
+  --bunt-text-faint:    #6f6880;  /* captions, disabled */
+  --bunt-text-on-accent:#0b0910;  /* text sitting on the accent fill */
+
+  /* ---- Accent (DEFAULT = "void" purple, VOIDCORE) ----------------------- */
+  --bunt-accent:        #8a3ffb;
+  /* Derived automatically from --bunt-accent — override only if needed. */
+  --bunt-accent-soft:   color-mix(in oklab, var(--bunt-accent) 22%, var(--bunt-bg));
+  --bunt-accent-line:   color-mix(in oklab, var(--bunt-accent) 45%, var(--bunt-line));
+  --bunt-accent-hover:  color-mix(in oklab, var(--bunt-accent) 82%, white);
+  --bunt-glow:          color-mix(in oklab, var(--bunt-accent) 60%, transparent);
+
+  /* ---- Status ----------------------------------------------------------- */
+  --bunt-danger:        #ff4d6d;
+  --bunt-success:       #35e0a1;
+  --bunt-warning:       #ffb020;
+
+  /* ---- Typography ------------------------------------------------------- */
+  /* Display = the BUNT wordmark voice. Blackletter is delivered as IMAGE
+     assets per release; this stack is the text fallback only. Self-host the
+     real face via @font-face and swap the first family name in. */
+  --bunt-font-display: "BUNT Display", "UnifrakturCook", ui-serif, Georgia, serif;
+  /* UI = everything readable. Self-host Inter for brand-exact rendering. */
+  --bunt-font-ui:      "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Mono = file names, sizes, hashes, technical meta. */
+  --bunt-font-mono:    "JetBrains Mono", ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  /* Fluid type scale (min → max across 360–1280px viewport) */
+  --bunt-text-xs:   0.75rem;                              /* 12 */
+  --bunt-text-sm:   0.875rem;                             /* 14 */
+  --bunt-text-base: 1rem;                                 /* 16 */
+  --bunt-text-lg:   1.125rem;                             /* 18 */
+  --bunt-text-xl:   clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --bunt-text-2xl:  clamp(1.6rem,  1.3rem + 1.4vw, 2.25rem);
+  --bunt-text-3xl:  clamp(2.1rem,  1.6rem + 2.4vw, 3.25rem);
+  --bunt-text-4xl:  clamp(2.8rem,  1.9rem + 4.2vw, 5rem);
+
+  --bunt-leading-tight: 1.05;
+  --bunt-leading-snug:  1.25;
+  --bunt-leading-body:  1.6;
+
+  --bunt-tracking-tight: -0.02em;
+  --bunt-tracking-wide:  0.08em;
+  --bunt-tracking-caps:  0.16em;   /* eyebrow / overline uppercase */
+
+  /* ---- Spacing scale (4px base) ---------------------------------------- */
+  --bunt-space-1:  0.25rem;   /* 4  */
+  --bunt-space-2:  0.5rem;    /* 8  */
+  --bunt-space-3:  0.75rem;   /* 12 */
+  --bunt-space-4:  1rem;      /* 16 */
+  --bunt-space-5:  1.5rem;    /* 24 */
+  --bunt-space-6:  2rem;      /* 32 */
+  --bunt-space-7:  3rem;      /* 48 */
+  --bunt-space-8:  4rem;      /* 64 */
+  --bunt-space-9:  6rem;      /* 96 */
+
+  /* ---- Radius ----------------------------------------------------------- */
+  --bunt-radius-sm:   6px;
+  --bunt-radius-md:   10px;
+  --bunt-radius-lg:   16px;
+  --bunt-radius-xl:   22px;
+  --bunt-radius-pill: 999px;
+
+  /* ---- Elevation & glow ------------------------------------------------- */
+  --bunt-shadow-sm:  0 1px 2px rgba(0,0,0,.5);
+  --bunt-shadow-md:  0 6px 24px rgba(0,0,0,.55);
+  --bunt-shadow-lg:  0 18px 60px rgba(0,0,0,.65);
+  /* Accent glow — the signature light-behind-the-logo look */
+  --bunt-glow-sm:  0 0 12px var(--bunt-glow);
+  --bunt-glow-md:  0 0 28px var(--bunt-glow);
+  --bunt-glow-lg:  0 0 60px var(--bunt-glow);
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --bunt-container:      1200px;
+  --bunt-container-tight: 820px;
+  --bunt-gutter:         var(--bunt-space-5);
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --bunt-ease:      cubic-bezier(.2, .7, .2, 1);
+  --bunt-dur-fast:  120ms;
+  --bunt-dur-base:  200ms;
+  --bunt-dur-slow:  400ms;
+
+  /* ---- Z-index ---------------------------------------------------------- */
+  --bunt-z-header: 100;
+  --bunt-z-overlay: 200;
+}
+
+/* Users on Tor "Safest" often also prefer reduced motion — honour it. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --bunt-dur-fast: 1ms;
+    --bunt-dur-base: 1ms;
+    --bunt-dur-slow: 1ms;
+  }
+}

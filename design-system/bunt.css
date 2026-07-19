@@ -1,0 +1,325 @@
+/* ============================================================================
+   BUNT — Components & base styles
+   Load order:  tokens.css → themes.css → bunt.css
+   Pure CSS. Progressive-enhancement only; nothing here requires JavaScript.
+   ========================================================================== */
+
+/* ---- 1. Reset (minimal, opinionated) ----------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, svg, video, canvas, audio { display: block; max-width: 100%; }
+img, svg, video { height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+:focus-visible {
+  outline: 2px solid var(--bunt-accent);
+  outline-offset: 2px;
+  border-radius: var(--bunt-radius-sm);
+}
+::selection { background: var(--bunt-accent); color: var(--bunt-text-on-accent); }
+
+/* ---- 2. Page base ------------------------------------------------------- */
+body {
+  font-family: var(--bunt-font-ui);
+  font-size: var(--bunt-text-base);
+  line-height: var(--bunt-leading-body);
+  color: var(--bunt-text);
+  background-color: var(--bunt-bg);
+  /* Signature "marble / smoke" atmosphere, generated in CSS — no image
+     request, so it renders even on a JS-locked Tor client. */
+  background-image:
+    radial-gradient(120% 80% at 50% -10%,
+      color-mix(in oklab, var(--bunt-accent) 18%, transparent) 0%,
+      transparent 55%),
+    radial-gradient(80% 60% at 85% 20%,  rgba(255,255,255,.04) 0%, transparent 60%),
+    radial-gradient(90% 70% at 10% 90%,  rgba(0,0,0,.6) 0%, transparent 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optional grain overlay — drop <div class="bunt-grain"></div> as first child. */
+.bunt-grain {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: .05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>\
+<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter>\
+<rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ---- 3. Layout ---------------------------------------------------------- */
+.bunt-container {
+  width: 100%;
+  max-width: var(--bunt-container);
+  margin-inline: auto;
+  padding-inline: var(--bunt-gutter);
+  position: relative; z-index: 1;
+}
+.bunt-container--tight { max-width: var(--bunt-container-tight); }
+
+.bunt-section { padding-block: var(--bunt-space-8); }
+.bunt-stack   { display: flex; flex-direction: column; gap: var(--bunt-space-4); }
+.bunt-row     { display: flex; align-items: center; gap: var(--bunt-space-3); flex-wrap: wrap; }
+.bunt-grid {
+  display: grid;
+  gap: var(--bunt-space-5);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* ---- 4. Typography ------------------------------------------------------ */
+.bunt-eyebrow {
+  font-size: var(--bunt-text-xs);
+  letter-spacing: var(--bunt-tracking-caps);
+  text-transform: uppercase;
+  color: var(--bunt-accent);
+  font-weight: 600;
+}
+.bunt-h1, .bunt-h2, .bunt-h3 {
+  line-height: var(--bunt-leading-tight);
+  letter-spacing: var(--bunt-tracking-tight);
+  font-weight: 800;
+  color: var(--bunt-text);
+  text-wrap: balance;
+}
+.bunt-h1 { font-size: var(--bunt-text-4xl); }
+.bunt-h2 { font-size: var(--bunt-text-3xl); }
+.bunt-h3 { font-size: var(--bunt-text-xl); font-weight: 700; }
+.bunt-lead   { font-size: var(--bunt-text-lg); color: var(--bunt-text-muted); max-width: 60ch; }
+.bunt-muted  { color: var(--bunt-text-muted); }
+.bunt-faint  { color: var(--bunt-text-faint); }
+.bunt-mono   { font-family: var(--bunt-font-mono); font-size: var(--bunt-text-sm); }
+
+/* Wordmark: use for the BUNT logotype where an image asset isn't used. */
+.bunt-wordmark {
+  font-family: var(--bunt-font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-shadow: var(--bunt-glow-md);
+}
+
+/* ---- 5. Buttons --------------------------------------------------------- */
+.bunt-btn {
+  --_pad-y: var(--bunt-space-3);
+  --_pad-x: var(--bunt-space-5);
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--bunt-space-2);
+  padding: var(--_pad-y) var(--_pad-x);
+  border-radius: var(--bunt-radius-pill);
+  border: 1px solid transparent;
+  font-weight: 600; font-size: var(--bunt-text-sm);
+  letter-spacing: var(--bunt-tracking-wide);
+  text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  transition: transform var(--bunt-dur-fast) var(--bunt-ease),
+              background-color var(--bunt-dur-base) var(--bunt-ease),
+              box-shadow var(--bunt-dur-base) var(--bunt-ease),
+              border-color var(--bunt-dur-base) var(--bunt-ease);
+}
+.bunt-btn:active { transform: translateY(1px); }
+
+.bunt-btn--primary {
+  background: var(--bunt-accent);
+  color: var(--bunt-text-on-accent);
+  box-shadow: var(--bunt-glow-sm);
+}
+.bunt-btn--primary:hover {
+  background: var(--bunt-accent-hover);
+  box-shadow: var(--bunt-glow-md);
+}
+.bunt-btn--ghost {
+  background: transparent;
+  color: var(--bunt-text);
+  border-color: var(--bunt-line-strong);
+}
+.bunt-btn--ghost:hover {
+  border-color: var(--bunt-accent);
+  color: var(--bunt-accent);
+  box-shadow: var(--bunt-glow-sm);
+}
+.bunt-btn--quiet {
+  background: var(--bunt-surface-2);
+  color: var(--bunt-text);
+}
+.bunt-btn--quiet:hover { background: var(--bunt-surface-3); }
+.bunt-btn--sm { --_pad-y: var(--bunt-space-2); --_pad-x: var(--bunt-space-4); font-size: var(--bunt-text-xs); }
+.bunt-btn--block { display: flex; width: 100%; }
+.bunt-btn[disabled], .bunt-btn[aria-disabled="true"] {
+  opacity: .45; pointer-events: none;
+}
+
+/* ---- 6. Badges / tags / file-type chips --------------------------------- */
+.bunt-badge {
+  display: inline-flex; align-items: center; gap: var(--bunt-space-1);
+  padding: 2px var(--bunt-space-2);
+  border-radius: var(--bunt-radius-sm);
+  font-family: var(--bunt-font-mono);
+  font-size: var(--bunt-text-xs);
+  text-transform: uppercase; letter-spacing: .04em;
+  background: var(--bunt-surface-3);
+  color: var(--bunt-text-muted);
+  border: 1px solid var(--bunt-line);
+}
+.bunt-badge--accent {
+  background: var(--bunt-accent-soft);
+  color: var(--bunt-accent);
+  border-color: var(--bunt-accent-line);
+}
+/* Semantic file-type colours (kept subtle; accent stays the star) */
+.bunt-badge[data-type="wav"], .bunt-badge[data-type="mp3"], .bunt-badge[data-type="flac"] { color: var(--bunt-success); }
+.bunt-badge[data-type="png"], .bunt-badge[data-type="jpg"], .bunt-badge[data-type="svg"]  { color: var(--bunt-warning); }
+.bunt-badge[data-type="zip"], .bunt-badge[data-type="als"]                                { color: var(--bunt-text-muted); }
+
+/* ---- 7. Card ------------------------------------------------------------ */
+.bunt-card {
+  background: var(--bunt-surface);
+  border: 1px solid var(--bunt-line);
+  border-radius: var(--bunt-radius-lg);
+  overflow: hidden;
+  transition: border-color var(--bunt-dur-base) var(--bunt-ease),
+              transform var(--bunt-dur-base) var(--bunt-ease),
+              box-shadow var(--bunt-dur-base) var(--bunt-ease);
+}
+.bunt-card:hover {
+  border-color: var(--bunt-accent-line);
+  box-shadow: var(--bunt-shadow-md);
+}
+.bunt-card__body { padding: var(--bunt-space-5); }
+
+/* ---- 8. Release card (cover-led) ---------------------------------------- */
+.release { display: flex; flex-direction: column; }
+.release__cover {
+  position: relative; aspect-ratio: 1 / 1; overflow: hidden;
+  background:
+    radial-gradient(70% 70% at 50% 45%, var(--bunt-accent-soft), var(--bunt-bg-2));
+}
+.release__cover img { width: 100%; height: 100%; object-fit: cover; }
+/* Accent halo bleeding from behind the cover — the record-sleeve glow */
+.release__cover::after {
+  content: ""; position: absolute; inset: -1px;
+  box-shadow: inset 0 -60px 60px -30px var(--bunt-glow);
+  pointer-events: none;
+}
+.release__body { padding: var(--bunt-space-4) var(--bunt-space-5) var(--bunt-space-5); display: grid; gap: var(--bunt-space-3); }
+.release__title {
+  font-size: var(--bunt-text-lg); font-weight: 700; letter-spacing: var(--bunt-tracking-tight);
+}
+.release__meta { display: flex; gap: var(--bunt-space-2); align-items: center; color: var(--bunt-text-faint); font-size: var(--bunt-text-sm); }
+.release__actions { display: flex; gap: var(--bunt-space-2); margin-top: var(--bunt-space-1); }
+
+/* ---- 9. File / download row --------------------------------------------- */
+.bunt-file {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center; gap: var(--bunt-space-4);
+  padding: var(--bunt-space-3) var(--bunt-space-4);
+  background: var(--bunt-surface);
+  border: 1px solid var(--bunt-line);
+  border-radius: var(--bunt-radius-md);
+  transition: border-color var(--bunt-dur-base) var(--bunt-ease),
+              background-color var(--bunt-dur-base) var(--bunt-ease);
+}
+.bunt-file:hover { border-color: var(--bunt-accent-line); background: var(--bunt-surface-2); }
+.bunt-file__icon {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  border-radius: var(--bunt-radius-sm);
+  background: var(--bunt-accent-soft); color: var(--bunt-accent);
+  font-family: var(--bunt-font-mono); font-size: var(--bunt-text-xs); font-weight: 700;
+}
+.bunt-file__name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bunt-file__sub  { font-family: var(--bunt-font-mono); font-size: var(--bunt-text-xs); color: var(--bunt-text-faint); }
+.bunt-file__size { font-family: var(--bunt-font-mono); font-size: var(--bunt-text-sm); color: var(--bunt-text-muted); }
+@media (max-width: 560px) {
+  .bunt-file { grid-template-columns: auto 1fr auto; }
+  .bunt-file__size { display: none; }
+}
+
+/* ---- 10. Audio player (native, restyled — zero JS) ---------------------- */
+.bunt-player {
+  display: grid; gap: var(--bunt-space-3);
+  padding: var(--bunt-space-4);
+  background: var(--bunt-surface);
+  border: 1px solid var(--bunt-line);
+  border-radius: var(--bunt-radius-lg);
+}
+.bunt-player__head { display: flex; align-items: center; gap: var(--bunt-space-3); }
+.bunt-player__title { font-weight: 700; }
+.bunt-player audio { width: 100%; height: 40px; }
+/* Chromium exposes ::-webkit-media-controls; Firefox/Tor keeps native chrome. */
+.bunt-player audio::-webkit-media-controls-panel { background: var(--bunt-surface-2); }
+
+/* ---- 11. Link hub ------------------------------------------------------- */
+.bunt-links { display: grid; gap: var(--bunt-space-3); max-width: 520px; margin-inline: auto; }
+.bunt-link {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--bunt-space-3);
+  padding: var(--bunt-space-4) var(--bunt-space-5);
+  background: var(--bunt-surface);
+  border: 1px solid var(--bunt-line);
+  border-radius: var(--bunt-radius-pill);
+  text-decoration: none; font-weight: 600;
+  transition: transform var(--bunt-dur-fast) var(--bunt-ease),
+              border-color var(--bunt-dur-base) var(--bunt-ease),
+              box-shadow var(--bunt-dur-base) var(--bunt-ease);
+}
+.bunt-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--bunt-accent);
+  box-shadow: var(--bunt-glow-sm);
+}
+.bunt-link__arrow { color: var(--bunt-accent); }
+
+/* ---- 12. Header / nav --------------------------------------------------- */
+.bunt-header {
+  position: sticky; top: 0; z-index: var(--bunt-z-header);
+  backdrop-filter: blur(10px);
+  background: color-mix(in oklab, var(--bunt-bg) 82%, transparent);
+  border-bottom: 1px solid var(--bunt-line);
+}
+.bunt-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--bunt-space-4); padding-block: var(--bunt-space-3); }
+.bunt-nav { display: flex; gap: var(--bunt-space-5); }
+.bunt-nav a {
+  text-decoration: none; color: var(--bunt-text-muted);
+  font-size: var(--bunt-text-sm); font-weight: 600;
+  text-transform: uppercase; letter-spacing: var(--bunt-tracking-wide);
+  transition: color var(--bunt-dur-base) var(--bunt-ease);
+}
+.bunt-nav a:hover, .bunt-nav a[aria-current="page"] { color: var(--bunt-accent); }
+
+/* ---- 13. Hero ----------------------------------------------------------- */
+.bunt-hero { padding-block: var(--bunt-space-9) var(--bunt-space-8); text-align: center; }
+.bunt-hero .bunt-wordmark { font-size: var(--bunt-text-4xl); }
+.bunt-hero__tagline { margin-top: var(--bunt-space-4); color: var(--bunt-text-muted); font-size: var(--bunt-text-lg); }
+
+/* ---- 14. Forms (search / newsletter) ------------------------------------ */
+.bunt-input {
+  width: 100%;
+  padding: var(--bunt-space-3) var(--bunt-space-4);
+  background: var(--bunt-surface-3);
+  border: 1px solid var(--bunt-line);
+  border-radius: var(--bunt-radius-md);
+  color: var(--bunt-text);
+  transition: border-color var(--bunt-dur-base) var(--bunt-ease), box-shadow var(--bunt-dur-base) var(--bunt-ease);
+}
+.bunt-input::placeholder { color: var(--bunt-text-faint); }
+.bunt-input:focus { border-color: var(--bunt-accent); box-shadow: var(--bunt-glow-sm); outline: none; }
+
+/* ---- 15. Footer --------------------------------------------------------- */
+.bunt-footer {
+  margin-top: var(--bunt-space-9);
+  padding-block: var(--bunt-space-7);
+  background: var(--bunt-bg-2);
+  border-top: 1px solid var(--bunt-line);
+  color: var(--bunt-text-faint); font-size: var(--bunt-text-sm);
+}
+
+/* ---- 16. Utilities ------------------------------------------------------ */
+.bunt-divider { height: 1px; background: var(--bunt-line); border: 0; margin-block: var(--bunt-space-6); }
+.bunt-center  { text-align: center; }
+.bunt-glow    { box-shadow: var(--bunt-glow-md); }
+.bunt-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
