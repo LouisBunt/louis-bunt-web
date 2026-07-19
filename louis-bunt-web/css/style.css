@@ -143,6 +143,21 @@ header {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(59, 43, 179, 0.25);
 }
 
+/* Quadratisches Release-Artwork im Hero */
+.hero-art {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  /* height:auto ist noetig, damit aspect-ratio das HTML-height-Attribut schlaegt */
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin: 0 auto 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(139, 63, 251, 0.3);
+}
+
 .hero-eyebrow {
   color: var(--accent);
   font-weight: 600;
@@ -240,6 +255,18 @@ section { padding: 3rem 0; }
   border-color: rgba(212, 26, 46, 0.5);
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Cover-Artwork oben in einer Karte (bricht aus dem Karten-Padding aus) */
+.card-art {
+  display: block;
+  width: calc(100% + 3rem);
+  margin: -1.5rem -1.5rem 0;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--bg);
 }
 
 .card h3 { font-size: 1rem; font-weight: 600; }
@@ -400,6 +427,43 @@ section { padding: 3rem 0; }
   .sc-art { display: none; }
 }
 
+/* ---------- Track-Artwork-Galerie ---------- */
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.25rem;
+}
+
+.track img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.track:hover img {
+  border-color: rgba(212, 26, 46, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.track-title {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.65rem;
+}
+
+.track-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* ---------- Previews & Shop ---------- */
 .preview-grid {
   display: grid;
@@ -412,6 +476,7 @@ section { padding: 3rem 0; }
 .preview img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: var(--radius);
@@ -443,6 +508,7 @@ section { padding: 3rem 0; }
 .shop-cover img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: var(--radius);
