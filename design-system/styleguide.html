@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUNT — Design System</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="bunt.css">
+  <style>
+    /* styleguide-only helpers */
+    .sg-label { font-family: var(--bunt-font-mono); font-size: var(--bunt-text-xs); color: var(--bunt-text-faint); text-transform: uppercase; letter-spacing:.1em; margin-bottom: var(--bunt-space-2); }
+    .sg-swatches { display:grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: var(--bunt-space-3); }
+    .sg-swatch { border:1px solid var(--bunt-line); border-radius: var(--bunt-radius-md); overflow:hidden; }
+    .sg-swatch__chip { height:64px; }
+    .sg-swatch__meta { padding: var(--bunt-space-2) var(--bunt-space-3); font-family: var(--bunt-font-mono); font-size: var(--bunt-text-xs); }
+    .sg-swatch__meta b { display:block; color: var(--bunt-text); font-weight:600; text-transform:none; }
+    .sg-themes { display:flex; gap: var(--bunt-space-2); flex-wrap:wrap; }
+    .sg-theme-dot { width:28px; height:28px; border-radius:50%; border:2px solid var(--bunt-line); background: var(--bunt-accent); box-shadow: var(--bunt-glow-sm); }
+    .sg-block > h2 { margin-bottom: var(--bunt-space-5); }
+    .sg-block + .sg-block { margin-top: var(--bunt-space-8); }
+  </style>
+</head>
+<body class="theme-void">
+  <div class="bunt-grain"></div>
+
+  <header class="bunt-header">
+    <div class="bunt-container bunt-header__inner">
+      <span class="bunt-wordmark" style="font-size:var(--bunt-text-xl)">BUNT</span>
+      <nav class="bunt-nav">
+        <a href="#" aria-current="page">Releases</a>
+        <a href="#">Downloads</a>
+        <a href="#">Links</a>
+        <a href="#">Store</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="bunt-hero bunt-container bunt-container--tight">
+    <p class="bunt-eyebrow">Prod by Louis · .onion</p>
+    <h1 class="bunt-wordmark">BUNT</h1>
+    <p class="bunt-hero__tagline">Releases, Samples, Artwork &amp; alles Digitale — an einem Ort. Zum Anhören und zum Runterladen.</p>
+    <div class="bunt-row" style="justify-content:center; margin-top:var(--bunt-space-5)">
+      <a class="bunt-btn bunt-btn--primary" href="#">Neuestes hören</a>
+      <a class="bunt-btn bunt-btn--ghost" href="#">Alle Downloads</a>
+    </div>
+  </section>
+
+  <main class="bunt-container">
+
+    <!-- COLOUR -->
+    <div class="bunt-section sg-block">
+      <p class="bunt-eyebrow">Foundation</p>
+      <h2 class="bunt-h2">Farben</h2>
+      <p class="sg-label" style="margin-top:var(--bunt-space-5)">Oberflächen &amp; Text</p>
+      <div class="sg-swatches">
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--bunt-bg)"></div><div class="sg-swatch__meta"><b>bg</b>#0b0910</div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--bunt-surface)"></div><div class="sg-swatch__meta"><b>surface</b>#17131f</div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--bunt-surface-2)"></div><div class="sg-swatch__meta"><b>surface-2</b>#1f1a29</div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--bunt-line-strong)"></div><div class="sg-swatch__meta"><b>line</b>#3b3350</div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--bunt-text)"></div><div class="sg-swatch__meta"><b>text</b>#ece9f1</div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--bunt-text-muted)"></div><div class="sg-swatch__meta"><b>muted</b>#a49cb5</div></div>
+      </div>
+
+      <p class="sg-label" style="margin-top:var(--bunt-space-6)">Release-Themes — ein Token tauscht die ganze Marke</p>
+      <div class="sg-themes">
+        <span class="sg-theme-dot theme-void"  title="void"></span>
+        <span class="sg-theme-dot theme-ash"   title="ash"></span>
+        <span class="sg-theme-dot theme-blood" title="blood"></span>
+        <span class="sg-theme-dot theme-toxic" title="toxic"></span>
+        <span class="sg-theme-dot theme-gold"  title="gold"></span>
+        <span class="sg-theme-dot theme-frost" title="frost"></span>
+        <span class="sg-theme-dot theme-bone"  title="bone"></span>
+      </div>
+    </div>
+
+    <!-- TYPOGRAPHY -->
+    <div class="bunt-section sg-block">
+      <p class="bunt-eyebrow">Foundation</p>
+      <h2 class="bunt-h2">Typografie</h2>
+      <div class="bunt-stack" style="margin-top:var(--bunt-space-5)">
+        <div><p class="sg-label">Wordmark / Display (nur Logo)</p><span class="bunt-wordmark" style="font-size:var(--bunt-text-3xl)">BUNT — VOIDCORE</span></div>
+        <div><p class="sg-label">H1</p><span class="bunt-h1">Nightshift</span></div>
+        <div><p class="sg-label">H2</p><span class="bunt-h2">Neue Samples</span></div>
+        <div><p class="sg-label">Lead</p><p class="bunt-lead">Freier Download aller Stems, Artworks und Ableton-Sessions.</p></div>
+        <div><p class="sg-label">Body</p><p>Standardtext in der UI-Schrift. Klar lesbar, hoher Kontrast auf fast-schwarzem Grund.</p></div>
+        <div><p class="sg-label">Mono / technisch</p><span class="bunt-mono">ashfall_stems.zip · 84.2 MB · sha256:9f2a…</span></div>
+      </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="bunt-section sg-block">
+      <p class="bunt-eyebrow">Components</p>
+      <h2 class="bunt-h2">Buttons</h2>
+      <div class="bunt-row" style="margin-top:var(--bunt-space-5)">
+        <button class="bunt-btn bunt-btn--primary">Download</button>
+        <button class="bunt-btn bunt-btn--ghost">Vorschau</button>
+        <button class="bunt-btn bunt-btn--quiet">Teilen</button>
+        <button class="bunt-btn bunt-btn--primary bunt-btn--sm">Klein</button>
+        <button class="bunt-btn bunt-btn--primary" disabled>Bald</button>
+      </div>
+    </div>
+
+    <!-- RELEASE CARDS -->
+    <div class="bunt-section sg-block">
+      <p class="bunt-eyebrow">Components</p>
+      <h2 class="bunt-h2">Release-Karten</h2>
+      <div class="bunt-grid" style="margin-top:var(--bunt-space-5)">
+        <article class="bunt-card release theme-void">
+          <div class="release__cover"></div>
+          <div class="release__body">
+            <span class="bunt-badge bunt-badge--accent">Single</span>
+            <h3 class="release__title">VOIDCORE</h3>
+            <p class="release__meta">2026 · 3 Tracks</p>
+            <div class="release__actions">
+              <button class="bunt-btn bunt-btn--primary bunt-btn--sm">Hören</button>
+              <button class="bunt-btn bunt-btn--ghost bunt-btn--sm">Download</button>
+            </div>
+          </div>
+        </article>
+        <article class="bunt-card release theme-ash">
+          <div class="release__cover"></div>
+          <div class="release__body">
+            <span class="bunt-badge bunt-badge--accent">EP</span>
+            <h3 class="release__title">ashfall</h3>
+            <p class="release__meta">2026 · 5 Tracks</p>
+            <div class="release__actions">
+              <button class="bunt-btn bunt-btn--primary bunt-btn--sm">Hören</button>
+              <button class="bunt-btn bunt-btn--ghost bunt-btn--sm">Download</button>
+            </div>
+          </div>
+        </article>
+        <article class="bunt-card release theme-blood">
+          <div class="release__cover"></div>
+          <div class="release__body">
+            <span class="bunt-badge bunt-badge--accent">Single</span>
+            <h3 class="release__title">Nightfall</h3>
+            <p class="release__meta">2026 · 1 Track</p>
+            <div class="release__actions">
+              <button class="bunt-btn bunt-btn--primary bunt-btn--sm">Hören</button>
+              <button class="bunt-btn bunt-btn--ghost bunt-btn--sm">Download</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- PLAYER -->
+    <div class="bunt-section sg-block">
+      <p class="bunt-eyebrow">Components</p>
+      <h2 class="bunt-h2">Player (nativ, ohne JS)</h2>
+      <div class="bunt-player" style="margin-top:var(--bunt-space-5)">
+        <div class="bunt-player__head">
+          <span class="bunt-badge bunt-badge--accent">NOW</span>
+          <span class="bunt-player__title">ashfall — prod by louis</span>
+        </div>
+        <audio controls preload="none"></audio>
+      </div>
+    </div>
+
+    <!-- DOWNLOADS -->
+    <div class="bunt-section sg-block">
+      <p class="bunt-eyebrow">Components</p>
+      <h2 class="bunt-h2">Download-Liste</h2>
+      <div class="bunt-stack" style="margin-top:var(--bunt-space-5)">
+        <div class="bunt-file">
+          <div class="bunt-file__icon">ZIP</div>
+          <div><div class="bunt-file__name">ashfall_stems.zip</div><div class="bunt-file__sub">24 Dateien · WAV Stems</div></div>
+          <div class="bunt-file__size">84.2 MB</div>
+          <button class="bunt-btn bunt-btn--primary bunt-btn--sm">Download</button>
+        </div>
+        <div class="bunt-file">
+          <div class="bunt-file__icon">PNG</div>
+          <div><div class="bunt-file__name">VOIDCORE_thump.png</div><div class="bunt-file__sub">Cover Artwork · 1080×1080</div></div>
+          <div class="bunt-file__size">1.4 MB</div>
+          <button class="bunt-btn bunt-btn--primary bunt-btn--sm">Download</button>
+        </div>
+        <div class="bunt-file">
+          <div class="bunt-file__icon">ALS</div>
+          <div><div class="bunt-file__name">brettattattatata.als</div><div class="bunt-file__sub">Ableton Live Session</div></div>
+          <div class="bunt-file__size">12.0 MB</div>
+          <button class="bunt-btn bunt-btn--primary bunt-btn--sm">Download</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINK HUB -->
+    <div class="bunt-section sg-block">
+      <p class="bunt-eyebrow">Components</p>
+      <h2 class="bunt-h2">Link-Hub</h2>
+      <div class="bunt-links" style="margin-top:var(--bunt-space-5)">
+        <a class="bunt-link" href="#">Spotify <span class="bunt-link__arrow">↗</span></a>
+        <a class="bunt-link" href="#">SoundCloud <span class="bunt-link__arrow">↗</span></a>
+        <a class="bunt-link" href="#">YouTube <span class="bunt-link__arrow">↗</span></a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bunt-footer">
+    <div class="bunt-container">
+      <span class="bunt-wordmark" style="font-size:var(--bunt-text-lg)">BUNT</span>
+      <p style="margin-top:var(--bunt-space-2)">.onion · prod by louis · © 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

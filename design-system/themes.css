@@ -1,0 +1,21 @@
+/* ============================================================================
+   BUNT — Release accent themes
+   Set ONE class (or inline --bunt-accent) on any scope to re-skin the accent.
+   Everything else (glow, borders, soft fills) derives automatically.
+   ----------------------------------------------------------------------------
+   Usage:
+     <body class="theme-void">                     … whole site
+     <article class="release theme-ash">            … single card
+     <section style="--bunt-accent:#ff2d55">        … one-off
+   ========================================================================== */
+
+.theme-void  { --bunt-accent: #8a3ffb; } /* VOIDCORE  — violet   (default) */
+.theme-ash   { --bunt-accent: #35e6d6; } /* ashfall   — cyan               */
+.theme-blood { --bunt-accent: #ff2d55; } /* rot / aggressive               */
+.theme-toxic { --bunt-accent: #8bff3f; } /* toxic green                    */
+.theme-gold  { --bunt-accent: #ffb020; } /* amber / gold                   */
+.theme-frost { --bunt-accent: #5b8cff; } /* cold blue                      */
+.theme-bone  { --bunt-accent: #e7e2d0; } /* off-white / achromatic release */
+
+/* Add a new release colour by copying one line above.
+   Only pick colours that stay legible as text on --bunt-bg (aim ≥ 4.5:1). */
